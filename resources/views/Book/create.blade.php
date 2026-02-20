@@ -29,7 +29,7 @@
                 <div class="mb-3">
                     <label class="form-label">Kode Buku</label>
                     <input type="text"
-                        name="book_code"
+                        name="kd_buku"
                         value="{{ old('kd_buku') }}"
                         class="form-control @error('kd_buku') is-invalid @enderror"
                         placeholder="AA456">
@@ -42,7 +42,7 @@
                 <div class="mb-3">
                     <label class="form-label">Judul Buku</label>
                     <input type="text"
-                        name="title"
+                        name="judul"
                         value="{{ old('judul') }}"
                         class="form-control @error('judul') is-invalid @enderror"
                         placeholder="Contoh: Laravel Untuk Pemula">
@@ -55,7 +55,7 @@
                 <div class="mb-3">
                     <label class="form-label">Penulis</label>
                     <input type="text"
-                        name="author"
+                        name="pengarang"
                         value="{{ old('penulis') }}"
                         class="form-control @error('penulis') is-invalid @enderror"
                         placeholder="Nama penulis">
@@ -68,7 +68,7 @@
                 <div class="mb-3">
                     <label class="form-label">Penerbit</label>
                     <input type="text"
-                        name="publisher"
+                        name="penerbit"
                         value="{{ old('penerbit') }}"
                         class="form-control @error('penerbit') is-invalid @enderror"
                         placeholder="Nama penerbit">
@@ -81,7 +81,7 @@
                 <div class="mb-3">
                     <label class="form-label">Tahun Terbit</label>
                     <input type="number"
-                        name="year"
+                        name="tahun"
                         value="{{ old('tahun') }}"
                         class="form-control @error('tahun') is-invalid @enderror"
                         placeholder="2024">

@@ -18,13 +18,13 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('book.create');
+        return view('Book.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kd_buku'   => 'required|string|max:50',
+            'kd_buku'   => 'required|string|max:50|unique:books,kd_buku',
             'judul'     => 'required|string|max:255',
             'pengarang' => 'required|string|max:255',
             'penerbit'  => 'required|string|max:255',
@@ -33,13 +33,14 @@ class BookController extends Controller
 
         book::create($request->all());
 
-        return redirect()->route('Book.index')
+        return redirect()->route('books.index')
             ->with('success', 'Buku berhasil ditambahkan');
     }
 
     public function edit(book $book)
     {
-        return view('book.edit', compact('book'));
+        // 
+        return view('Book.edit', compact('book'));
     }
 
     public function update(Request $request, book $book)
@@ -60,7 +61,7 @@ class BookController extends Controller
             'tahun',
         ]));
 
-        return redirect()->route('Book.index')
+        return redirect()->route('books.index')
             ->with('success', 'Buku berhasil diperbarui');
     }
 
@@ -80,7 +81,7 @@ class BookController extends Controller
 
         $book->update(['dipinjam' => true]);
 
-        return redirect()->route('Book.index')
+        return redirect()->route('books.index')
             ->with('success', 'Buku berhasil dipinjam');
     }
 
@@ -88,7 +89,7 @@ class BookController extends Controller
     {
         $book->delete();
 
-        return redirect()->route('Book.index')
+        return redirect()->route('books.index')
             ->with('success', 'Buku berhasil dihapus');
     }
 }

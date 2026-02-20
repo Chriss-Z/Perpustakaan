@@ -14,20 +14,20 @@ class TransaksiController extends Controller
     {
         $query = transaksi::with(['book', 'user'])->latest();
 
-        if (Auth::user()->role === 'member') {
+        if (Auth::user()->role === 'user') {
             $query->where('user_id', Auth::id());
         }
 
         $transactions = $query->get();
 
-        return view('transaksi.index', compact('transactions'));
+        return view('Transaksi.index', compact('transactions'));
     }
 
     public function create()
     {
-        return view('transaksi.create', [
+        return view('Transaksi.create', [
             'books' => book::where('dipinjam', false)->get(),
-            'users' => User::where('role', 'member')->get(),
+            'users' => User::where('role', 'user')->get(),
         ]);
     }
 
@@ -64,7 +64,7 @@ class TransaksiController extends Controller
     public function return(transaksi $transaction)
     {
         if (
-            (Auth::user()->role == 'member') &&
+            (Auth::user()->role == 'user') &&
             ($transaction->user_id != Auth::id())
         ) {
             abort(403);

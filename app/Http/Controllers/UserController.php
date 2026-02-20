@@ -30,7 +30,7 @@ class UserController extends Controller
             'nama'       => 'required|string',
             'email'      => 'required|email|unique:users',
             'password'   => 'required|min:6',
-            'role'       => 'required|in:admin,member',
+            'role'       => 'required|in:user,admin',
         ]);
 
         User::create([
@@ -44,7 +44,7 @@ class UserController extends Controller
             'role'       => $request->role,
         ]);
 
-        return redirect()->route('User.index')
+        return redirect()->route('users.index')
             ->with('success', 'User berhasil ditambahkan');
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
             'id_sekolah' => 'nullable|string|max:50',
             'jurusan'    => 'nullable|string|max:100',
             'kelas'      => 'nullable|string|max:50',
-            'role'       => 'required|in:admin,member',
+            'role'       => 'required|in:user,admin',
             'password'   => 'nullable|string|min:6',
         ]);
 
@@ -79,7 +79,7 @@ class UserController extends Controller
         $user->update($validated);
 
         return redirect()
-            ->route('User.index')
+            ->route('users.index')
             ->with('success', 'Data user berhasil diperbarui');
     }
 

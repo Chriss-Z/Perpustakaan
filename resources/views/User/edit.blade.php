@@ -67,10 +67,10 @@
                 <div class="mb-3">
                     <label class="form-label">NIS</label>
                     <input type="text"
-                        name="id_sekolah"
+                        name="id_Sekolah"
                         class="form-control"
-                        value="{{ old('id_sekolah', $user->id_sekolah) }}">
-                    @error('id_sekolah')
+                        value="{{ old('id_Sekolah', $user->id_Sekolah) }}">
+                    @error('id_Sekolah')
                     <div class="text-danger small">{{ $message }}</div>
                     @enderror
                 </div>
@@ -118,10 +118,10 @@
                     <label class="form-label">Role</label>
                     <select name="role" class="form-select">
                         <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>
-                            User
+                            user
                         </option>
                         <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>
-                            Admin
+                            admin
                         </option>
                     </select>
                     @error('role')

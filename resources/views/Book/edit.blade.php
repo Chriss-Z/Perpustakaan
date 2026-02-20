@@ -33,7 +33,7 @@
                 <div class="mb-3">
                     <label class="form-label">Kode Buku</label>
                     <input type="text"
-                        name="book_code"
+                        name="kd_buku"
                         value="{{ old('kd_buku', $book->kd_buku) }}"
                         class="form-control @error('kd_buku') is-invalid @enderror">
 
@@ -46,7 +46,7 @@
                 <div class="mb-3">
                     <label class="form-label">Judul Buku</label>
                     <input type="text"
-                        name="title"
+                        name="judul"
                         value="{{ old('judul', $book->judul) }}"
                         class="form-control @error('judul') is-invalid @enderror">
 
@@ -59,9 +59,9 @@
                 <div class="mb-3">
                     <label class="form-label">Penulis</label>
                     <input type="text"
-                        name="author"
-                        value="{{ old('penulis', $book->penulis) }}"
-                        class="form-control @error('penulis') is-invalid @enderror">
+                        name="pengarang"
+                        value="{{ old('pengarang', $book->pengarang) }}"
+                        class="form-control @error('pengarang') is-invalid @enderror">
 
                     @error('penulis')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -72,7 +72,7 @@
                 <div class="mb-3">
                     <label class="form-label">Penerbit</label>
                     <input type="text"
-                        name="publisher"
+                        name="penerbit"
                         value="{{ old('penerbit', $book->penerbit) }}"
                         class="form-control @error('penerbit') is-invalid @enderror">
 
@@ -85,7 +85,7 @@
                 <div class="mb-3">
                     <label class="form-label">Tahun Terbit</label>
                     <input type="number"
-                        name="year"
+                        name="tahun"
                         value="{{ old('tahun', $book->tahun) }}"
                         class="form-control @error('tahun') is-invalid @enderror">
 
