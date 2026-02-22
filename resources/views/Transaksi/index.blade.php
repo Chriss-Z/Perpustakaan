@@ -3,31 +3,30 @@
 @section('title', 'Dashboard Transaksi')
 
 @section('content')
-<div class="container my-4">
+<div class="container py-5">
 
     {{-- Header --}}
-    <div class="card mb-4">
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-                <h4 class="mb-1">Dashboard Transaksi</h4>
-                <small class="text-muted">Data peminjaman & pengembalian buku</small>
-            </div>
-
-            @if (Auth::user()->role == 'admin')
-            <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-sm">
-                Tambah Transaksi
-            </a>
-            @endif
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-semibold mb-1">Dashboard Transaksi</h4>
+            <small class="text-muted">Data peminjaman & pengembalian buku</small>
         </div>
+
+        @if (Auth::user()->role == 'admin')
+        <a href="{{ route('transactions.create') }}"
+            class="btn btn-dark btn-sm rounded-pill px-3">
+            + Tambah
+        </a>
+        @endif
     </div>
 
     {{-- Table --}}
-    <div class="card">
-        <div class="card-body p-0">
-            <table class="table table-hover mb-0 align-middle">
-                <thead class="table-light">
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="bg-light">
                     <tr>
-                        <th>Kode Buku</th>
+                        <th class="ps-4">Kode Buku</th>
                         <th>Judul Buku</th>
 
                         @if (Auth::user()->role == 'admin')
@@ -37,7 +36,7 @@
                         <th>Tgl Pinjam</th>
                         <th>Tgl Kembali</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Aksi</th>
+                        <th class="text-center pe-4">Aksi</th>
                     </tr>
                 </thead>
 
@@ -45,50 +44,48 @@
                     @forelse ($transactions as $transaction)
                     <tr>
 
-                        {{-- Kode Buku --}}
-                        <td>{{ $transaction->book->kd_buku }}</td>
+                        <td class="ps-4 fw-medium">
+                            {{ $transaction->book->kd_buku }}
+                        </td>
 
-                        {{-- Judul Buku --}}
                         <td>{{ $transaction->book->judul }}</td>
 
-                        {{-- Peminjam --}}
                         @if (Auth::user()->role == 'admin')
                         <td>{{ $transaction->user->nama }}</td>
                         @endif
 
-                        {{-- Tanggal Pinjam --}}
                         <td>
                             {{ \Carbon\Carbon::parse($transaction->tanggal_pinjam)->format('d M Y') }}
                         </td>
 
-                        {{-- Tanggal Kembali --}}
                         <td>
                             {{ $transaction->tanggal_kembali
-                                    ? \Carbon\Carbon::parse($transaction->tanggal_kembali)->format('d M Y')
-                                    : '-' }}
+                                ? \Carbon\Carbon::parse($transaction->tanggal_kembali)->format('d M Y')
+                                : '-' }}
                         </td>
 
                         {{-- Status --}}
                         <td class="text-center">
                             @if ($transaction->status === 'dipinjam')
-                            <span class="badge bg-warning text-dark">
+                            <span class="badge bg-warning text-dark rounded-pill px-3">
                                 Dipinjam
                             </span>
                             @else
-                            <span class="badge bg-success">
+                            <span class="badge bg-success rounded-pill px-3">
                                 Dikembalikan
                             </span>
                             @endif
                         </td>
 
                         {{-- Aksi --}}
-                        <td class="text-center">
+                        <td class="text-center pe-4">
                             @if ($transaction->status === 'dipinjam')
                             <form action="{{ route('transactions.return', $transaction->id) }}"
                                 method="POST"
                                 class="d-inline">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-primary">
+                                <button type="submit"
+                                    class="btn btn-sm btn-outline-dark rounded-pill px-3">
                                     Kembalikan
                                 </button>
                             </form>
@@ -100,7 +97,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center text-muted py-4">
+                        <td colspan="7" class="text-center text-muted py-5">
                             Tidak ada data transaksi
                         </td>
                     </tr>

@@ -1,4 +1,3 @@
-<!-- 12 Login -->
 <!doctype html>
 <html lang="en">
 
@@ -11,44 +10,47 @@
 
 <body class="bg-light d-flex align-items-center justify-content-center vh-100">
 
-    <div class="card shadow-sm" style="width: 100%; max-width: 400px;">
-        <div class="card-body p-4">
+    <div class="card border-0 shadow"
+        style="width:100%; max-width:420px; min-height:500px; border-radius:20px;">
 
-            <h3 class="text-center mb-4">Login</h3>
+        <div class="card-body d-flex flex-column justify-content-center p-5">
+
+            <h3 class="text-center mb-4 fw-light">Login</h3>
+
+            @if ($errors->any())
+            <div class="alert alert-danger">{{ $errors->first() }}</div>
+            @endif
+
+            @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
 
             <form action="/login" method="POST">
                 @csrf
 
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    {{ $errors->first() }}
-                </div>
-                @endif
-
-                @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-                @endif
-
-                <div class="mb-3">
-                    <label class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" required>
-                </div>
-
                 <div class="mb-4">
-                    <label class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="text"
+                        name="username"
+                        class="form-control border-0 border-bottom rounded-0 shadow-none"
+                        placeholder="Username"
+                        required>
                 </div>
 
-                <button type="submit" class="btn btn-dark w-100">
+                <div class="mb-5">
+                    <input type="password"
+                        name="password"
+                        class="form-control border-0 border-bottom rounded-0 shadow-none"
+                        placeholder="Password"
+                        required>
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100 rounded-pill">
                     Login
                 </button>
             </form>
 
-            <p class="text-center mt-3 mb-0">
-                Belum punya akun?
-                <a href="register">Daftar</a>
+            <p class="text-center mt-4 mb-0 small text-muted">
+                Belum punya akun? <a href="/register" class="text-dark text-decoration-none">Daftar</a>
             </p>
 
         </div>

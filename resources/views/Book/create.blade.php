@@ -86,7 +86,7 @@
                         class="form-control @error('tahun') is-invalid @enderror"
                         placeholder="2024">
                     @error('tahun')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>-
                     @enderror
                 </div>
 
